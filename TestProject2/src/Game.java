@@ -6,11 +6,12 @@ public class Game {
     private Player player;
     private Rectangle canvas;
     private Keyboard keyboard;
-    private GameObject[] barrels;
+    private Barrel[] barrels;
 
     private static final int HEIGHT = 500;
     private static final int WIDTH = 500;
     private static final int MAX_BARRELS = 20;
+    private static final int JUMP_HEIGHT = -20;
 
     public Game() {
         this.canvas = new Rectangle(10, 10, HEIGHT, WIDTH);
@@ -23,26 +24,13 @@ public class Game {
 
         while (true) {
 
+            checkCollision();
+
             if (player.getIsJumping()) {
-                for (int i = 0; i < 50; i++) {
-                    this.player.jumpUp();
-                    for (GameObject b : this.barrels) {
-                        ((Barrel) b).move();
 
-                    }
-                    Thread.sleep(40);
-                }
+                this.playerJump();
 
-                for (int i = 0; i > -50; i--) {
-                    this.player.fall();
-                    for (GameObject b : this.barrels) {
-                        ((Barrel) b).move();
-
-                    }
-                    Thread.sleep(40);
-                }
-
-                this.player.setJumping(false);
+                this.playerFall();
 
             }
 
@@ -58,14 +46,47 @@ public class Game {
 
     }
 
-    private GameObject[] createBarrels() {
+    private void playerJump() throws InterruptedException {
+        for (int i = 0; i < 20; i++) {
+            this.player.jumpUp();
+            for (GameObject b : this.barrels) {
+                ((Barrel) b).move();
 
-        GameObject[] barrels = new GameObject[MAX_BARRELS];
+            }
+            Thread.sleep(40);
+        }
+    }
+
+    private void playerFall() throws InterruptedException {
+        for (int i = 0; i > JUMP_HEIGHT; i--) {
+            this.player.fall();
+            for (GameObject b : this.barrels) {
+                ((Barrel) b).move();
+
+            }
+            Thread.sleep(40);
+        }
+
+        this.player.setJumping(false);
+    }
+
+    private Barrel[] createBarrels() {
+
+        Barrel[] barrels = new Barrel[MAX_BARRELS];
 
         for (int i = 0; i < barrels.length; i++) {
             barrels[i] = new Barrel();
         }
 
         return barrels;
+    }
+
+    private void checkCollision(){
+
+        for( Collidable a : barrels){
+            if(this.player.hasCollided(a)){
+                this.player.setColorRed();
+            }
+        }
     }
 }
