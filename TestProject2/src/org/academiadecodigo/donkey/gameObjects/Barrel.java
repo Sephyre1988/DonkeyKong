@@ -1,3 +1,5 @@
+package org.academiadecodigo.donkey.gameObjects;
+
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 
 public class Barrel extends GameObject implements Movable, Collidable {

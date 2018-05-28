@@ -1,3 +1,6 @@
+import org.academiadecodigo.donkey.utils.Collidable;
+import org.academiadecodigo.donkey.utils.Movable;
+import org.academiadecodigo.donkey.utils.Point;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;

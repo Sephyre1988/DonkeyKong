@@ -1,3 +1,6 @@
+import org.academiadecodigo.donkey.gameObjects.Barrel;
+import org.academiadecodigo.donkey.gameObjects.GameObject;
+import org.academiadecodigo.donkey.utils.Collidable;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 

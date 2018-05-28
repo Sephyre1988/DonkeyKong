@@ -1,3 +1,5 @@
+package org.academiadecodigo.donkey.utils;
+
 public class Point {
 
     private int x;
